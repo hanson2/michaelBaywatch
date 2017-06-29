@@ -37,6 +37,7 @@ const app = {
             }
 
         }
+        f.flickName.value = ""
         this.items.push(flick)
         this.max++
 
