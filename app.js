@@ -28,9 +28,12 @@ const app = {
                 }
             },
             shift(up){
+                const temp = document.getElementById(this.id)
                 if(up){
+                    temp.id = this.id-1
                     this.id--
                 }else{
+                    temp.id = this.id+1
                     this.id++
                 }
             }
@@ -64,14 +67,28 @@ const app = {
     },
     delete(flick){
         for(let i=flick.id;i<this.items.length;i++){
-            const temp = document.getElementById(this.items[i].id)
-            console.log(temp.id)
-            temp.id = this.items[i].id-1
-            console.log(temp.id)
             this.items[i].shift(true)
         }
         this.items.splice(flick.id-1,1)
         this.removeListItem(flick)
+        this.update()
+    },
+    up(flick){
+        const id = flick.id
+        const movie2 = this.items[id-2].shift(false)
+        const movie = this.items[id-1].shift(true)
+        const temp = this.items.splice(id-1,1)
+        this.items.splice(id-2,0,temp[0])
+        
+        this.update()
+    },
+    down(flick){
+        const id = flick.id
+        this.items[id].shift(true)
+        this.items[id-1].shift(false)
+        const temp = this.items.splice(id-1,1)
+        this.items.splice(id,0,temp[0])
+
         this.update()
     }
 }
