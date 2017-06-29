@@ -16,8 +16,6 @@ const app = {
             name: f.flickName.value,
             favorite:false,
             remove(){
-                
-
                 removeListItem(flick)
             },
             fav(){
@@ -59,6 +57,7 @@ const app = {
         for(let i=flick.id;i<this.items.length;i++){
             this.items[i].shift(true)
         }
+        this.max--
         this.items.splice(flick.id-1,1)
         this.removeListItem(flick)
         this.update()
