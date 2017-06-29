@@ -37,12 +37,12 @@ const app = {
             }
 
         }
-        f.flickName.value = ""
+    
         this.items.push(flick)
         this.max++
 
         this.renderListItem(flick)
-        
+        f.reset()    
     },
     removeListItem(flick){
         const element = document.getElementById(flick.id)
