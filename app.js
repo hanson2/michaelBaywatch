@@ -29,9 +29,9 @@ const app = {
             },
             shift(up){
                 if(up){
-                    id--
+                    this.id--
                 }else{
-                    id++
+                    this.id++
                 }
             }
 
@@ -59,9 +59,21 @@ const app = {
     },
     update(){
         this.items.map(this.removeListItem.bind(this))
-        const temp = this.items.map(this.renderListItem.bind(this))
+        this.items.map(this.renderListItem.bind(this))
         
     },
+    delete(flick){
+        for(let i=flick.id;i<this.items.length;i++){
+            const temp = document.getElementById(this.items[i].id)
+            console.log(temp.id)
+            temp.id = this.items[i].id-1
+            console.log(temp.id)
+            this.items[i].shift(true)
+        }
+        this.items.splice(flick.id-1,1)
+        this.removeListItem(flick)
+        this.update()
+    }
 }
 
 
