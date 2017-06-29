@@ -92,12 +92,12 @@ const app = {
         item.textContent = flick.name
         item.style.backgroundColor = 'white'
         if(flick.favorite){
-            item.style.backgroundColor = 'green'
+            item.style.backgroundColor = '#ffae00'
         }
         item.setAttribute('id', flick.id)
         //fav button
         const favButton = document.createElement('button')
-        favButton.setAttribute('class', 'button success')
+        favButton.setAttribute('class', 'button warning')
         favButton.setAttribute('id', 'favButton')
         favButton.textContent = 'Favorite'
         favButton.addEventListener('click', this.favorite.bind(this))
