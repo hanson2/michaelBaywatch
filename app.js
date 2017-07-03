@@ -75,7 +75,7 @@ const app = {
         const name = ev.target.value
         for(let i=0;i<this.items.length;i++){
             const movie = document.querySelector(`#flick-id-${this.items[i].id}`)
-            if(!this.items[i].name.includes(name)){
+            if(!this.items[i].name.toLowerCase().includes(name.toLowerCase())){
                 if(!movie.classList.contains('template')){
                     movie.classList.add('template')
                 }
