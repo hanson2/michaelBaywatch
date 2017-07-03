@@ -26,7 +26,7 @@ const app = {
                 }
             },
             shift(up){
-                const temp = document.getElementById(this.id)
+                const temp = document.querySelector(`#${this.id}`)
                 if(up){
                     temp.id = this.id-1
                     this.id--
@@ -96,6 +96,7 @@ const app = {
             item.style.backgroundColor = '#ffae00'
         }
         item.setAttribute('id', flick.id)
+        item.dataset.id = flick.id;
         //fav button
         const favButton = document.createElement('button')
         favButton.setAttribute('class', 'button warning')
