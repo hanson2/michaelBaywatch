@@ -32,6 +32,7 @@ const app = {
         ev.target.closest('.flick').remove()
         const index = this.items.indexOf(flick)
         this.items.splice(index,1)
+        localStorage.setItem('items', JSON.stringify(this.items))
         
     },
     up(flick, ev){
