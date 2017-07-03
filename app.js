@@ -49,6 +49,22 @@ const app = {
         const movie = ev.target.closest('.flick')
         flick.favorite = movie.classList.toggle('fav')
     },
+    editable(flick,ev){
+        const movie = ev.target.closest('.flick')
+        const name = movie.querySelector('.flick-name')
+        //if(forceOff){
+        //    name.contentEditable = 'false'
+        //    flick.name = name.textContent
+        //}else{
+        if(name.contentEditable==='true'){
+            name.contentEditable = 'false'
+            flick.name = name.textContent
+        }else{
+            name.contentEditable = 'true'
+        }
+        //}
+
+    },
     renderListItem(flick){
         const item = document.querySelector('li.template').cloneNode(true)
         item.classList.remove('template')
@@ -67,6 +83,13 @@ const app = {
         //delete button
         const deleteButton = item.querySelector('.remove')
         deleteButton.addEventListener('click', this.delete.bind(this,flick))
+        //edit/save button
+        const editButton = item.querySelector('.edit')
+        editButton.addEventListener('click', this.editable.bind(this,flick))
+
+        //item.blur(function(){
+        //    this.editable.bind(this,flick,true)
+        //})
 
         this.list.insertBefore(item, this.list.firstChild)
     },
