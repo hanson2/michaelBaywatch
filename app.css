@@ -57,3 +57,6 @@ li + li{
     float: right;
     margin-right: 43px;
 }
+li.fav{
+    background-color: #ffae00;
+}
