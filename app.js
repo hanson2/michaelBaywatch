@@ -2,11 +2,17 @@ const app = {
     
     init(selectors){
         this.items = []
+        //if(localStorage.getItem('items')){
+        //    this.items = JSON.parse(localStorage.getItem('items'))
+        //    this.items.map(this.renderListItem.bind(this))
+        //}
         this.list = document.querySelector(selectors.listSelector)
         this.max = 0;
         document
             .querySelector(selectors.formSelector)
             .addEventListener("submit", this.handleSubmit.bind(this, document.querySelector(selectors.formSelector)))
+        const searchBar = document.querySelector(selectors.searchSelector)
+        searchBar.addEventListener('input', this.search.bind(this))
     },
     handleSubmit(f, ev){
         ev.preventDefault()
@@ -18,7 +24,7 @@ const app = {
     
         this.items.unshift(flick)
         this.max++
-
+        //localStorage.setItem('items', JSON.stringify(this.items))
         this.renderListItem(flick)
         f.reset()    
     },
@@ -65,6 +71,19 @@ const app = {
         //}
 
     },
+    search(ev){
+        const name = ev.target.value
+        for(let i=0;i<this.items.length;i++){
+            const movie = document.querySelector(`#flick-id-${this.items[i].id}`)
+            if(!this.items[i].name.includes(name)){
+                if(!movie.classList.contains('template')){
+                    movie.classList.add('template')
+                }
+            }else{
+                movie.classList.remove('template')
+            }
+        }
+    },
     renderListItem(flick){
         const item = document.querySelector('li.template').cloneNode(true)
         item.classList.remove('template')
@@ -89,8 +108,7 @@ const app = {
 
         //item.blur(function(){
         //    this.editable.bind(this,flick,true)
-        //})
-
+        //} 
         this.list.insertBefore(item, this.list.firstChild)
     },
 }
@@ -99,4 +117,5 @@ const app = {
 app.init({
     formSelector: "form#flick-form",
     listSelector: "#flick-list",
+    searchSelector: ".search",
 })
